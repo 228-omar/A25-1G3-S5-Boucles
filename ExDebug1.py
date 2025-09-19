@@ -3,47 +3,69 @@ def environnement_optimal(temp, poussiere, humidite):
     Vérifie si l'environnement d'un ordinateur est optimal.
 
     Paramètres :
-    - temp : température en °C (int ou float)
+    - temp : température
     - poussiere : niveau de poussière ("faible", "moyen", "élevé")
-    - humidite : taux d’humidité en % (int ou float)
+    - humidite : humidité
 
     Retour :
-    - "Tout est sous contrôle!" si toutes les conditions sont respectées
-    - "Environnement non optimal" sinon (après avoir affiché les problèmes détectés)
+    - "Tout est sous contrôle!" si tout est bon
+    - "Environnement non optimal" les problèmes sinon
+
     """
 
     alerte = False
 
-    # Vérification température
-    if temp < 18:
-        print("Température trop basse")
+    if temp <= 18:
+        message = "Température trop basse"
         alerte = True
-    elif temp > 27:
-        print("Température trop élevée")
-        alerte = True
+        # print(message)
 
-    # Vérification humidité
-    if humidite <= 30:
-        print("Humidité trop basse")
+    elif temp >= 27:
+        message = "Température trop élevée"
+        print(message)
         alerte = True
-    elif humidite >= 50:
-        print("Humidité trop élevée")
-        alerte = True
-
-    # Vérification poussière
-    if poussiere != "faible":
-        print("Trop de poussière")
-        alerte = True
-
-    # Retour final
-    if not alerte:
-        return "Tout est sous contrôle!"
     else:
-        return "Environnement non optimal"
+        message = "Temperature acceptable"
+        print(message)
+        alerte = False
+
+    if poussiere == "faible":
+        message = "Poussière acceptable"
+        print(message)
+        alerte = False
+    elif poussiere == "moyen" or "élevé":
+        message = "Poussière trop élevé"
+        print(message)
+        alerte = True
+
+    if 30 <= humidite >= 50:
+        message = "Humidité trop élevé"
+        print(message)
+        alerte = True
+    else:
+        message = "Humidité bonne"
+        print(message)
+        alerte = False
+
+    if not alerte:
+        print("Bon environnement")
+    else:
+        print(message)
+
+    return message, alerte,
 
 
 if __name__ == "__main__":
-    temp = float(input("Entrez la température: "))
-    poussiere = input("Entrez le niveau de poussière: ")
-    humidite = float(input("Entrez l'humidité: "))
-    print(environnement_optimal(temp, poussiere, humidite))
+    # TODO: Demander le nom de l'ordi
+    # TODO : Créer 3 listes (temp, poussiere, humidités)
+
+    # TODO : Pour le nombre d'ordi
+    # TODO : Demander temp, poussiere et humidite
+    # TODO : Ajouter les 3 valeurs dans leurs listes respectives
+
+    # TODO : pour nombre d'ordi
+    # TODO : vérifier l'environnement : utiliser la fonction et afficher le résultat
+    temp = int(input("Entrer la température : "))
+    poussiere = input("Entrer la l'etat de la poussière : ")
+    humidite = float(input("Entrer l'humidité : "))
+    environnement_optimal(temp, poussiere, humidite)
